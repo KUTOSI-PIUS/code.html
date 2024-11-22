@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Manage Categories</h2>
+        <form action="add_category.php" method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="name">Category Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+
+        <h3>Existing Categories</h3>
+        <ul class="list-group">
+            <?php
+            include 'db_connection.php'; // Include your database connection
+
+            $user_id = $_SESSION['user_id']; // Assuming you have user session management
+            $sql = "SELECT * FROM categories WHERE user_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()) {
+                echo "<li class='list-group-item'>" . htmlspecialchars($row['name']) . "</li>";
+            }
+
+            $stmt->close();
+            ?>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

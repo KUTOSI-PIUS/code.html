@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #333;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6a11cb;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2575fc;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form action="register.php" method="POST" id="registrationForm">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name" required>
+            <div class="error" id="firstNameError"></div>
+
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name" required>
+            <div class="error" id="lastNameError"></div>
+
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+            <div class="error" id="usernameError"></div>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+            <div class="error" id="emailError"></div>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required minlength="6">
+            <div class="error" id="passwordError"></div>
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" required minlength="6">
+            <div class="error" id="confirmPasswordError"></div>
+
+            <button type="submit">Register</button>
+            <div class="success" id="successMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission for validation
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            let isValid = true;
+
+            // Clear previous error messages
+            document.querySelectorAll('.error').forEach(function(error) {
+                error.innerText = '';
+            });
+
+ // Validate password match
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').innerText = "Passwords do not match.";
+                isValid = false;
+            }
+
+            // If valid, submit the form
+            if (isValid) {
+                document.getElementById('successMessage').innerText = "Registration successful! Redirecting...";
+                setTimeout(() => {
+                    document.getElementById('registrationForm').submit(); // Submit the form
+                }, 2000); // Delay for 2 seconds before submission
+            }
+        };
+    </script>
+</body>
+</html>

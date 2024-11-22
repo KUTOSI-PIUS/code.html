@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
+            background-color: #28a745;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #218838;
+        }
+
+        /* Content Area */
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        /* Links Section */
+        .content div {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .content div a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px 20px;
+            background-color: #007bff;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.3s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .content div a:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        /* Charts Section */
+        #charts {
+            margin: 30px 0;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            color: #999;
+            font-size: 18px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .content div {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #charts {
+                height: 200px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Dashboard</h1>
+        <a href="logout.php">Logout</a>
+    </nav>
+    <div class="content">
+        <h2>Welcome to Your Dashboard</h2>
+        <div id="charts">
+            <p>Charts will load here</p>
+        </div>
+        <div>
+            <a href="expenses.html">Manage Expenses</a>
+            <a href="budget.html">Set Budgets</a>
+        </div>
+    </div>
+    
+    <script src="assets/js/update_charts.js"></script>
+</body>
+</html>
